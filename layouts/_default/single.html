@@ -1,0 +1,15 @@
+{{- partial "header.html" . -}}
+<div class="container-fluid">
+    <div class="row">
+        <div id="main" class="col-12 clearfix" role="main">
+            <article class="posti" itemscope itemtype="http://schema.org/BlogPosting">
+                <h1 style="text-align:right;" class="post-title" itemprop="name headline">{{ .Title }}</h1>
+                <div class="post-content" itemprop="articleBody">
+                    {{.Content}}
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
+{{- partial "post_nav.html" . -}}
+{{- partial "footer.html" . -}}

@@ -1,0 +1,44 @@
+{{ partial "header.html" . }}
+
+<div id="body" class="clearfix">
+    <div class="container-fluid">
+        <div class="row">
+            <div id="main" role="main">
+                <ul class="post-list clearfix">
+                    {{ $paginator := .Paginate (where .Site.RegularPages "Section" "post" ) }}
+                    {{ range $paginator.Pages }}
+                    <li class="post-item grid-item" itemscope itemtype="http://schema.org/BlogPosting">
+                        <a class="post-link" href="{{.Permalink}}">
+                            {{ if .Site.Params.backgroundURL}}
+                            <span class="cover"
+                                style="background: url('{{.Site.Params.backgroundURL}}') center/cover no-repeat;"></span>
+                            {{ end }}
+                            <h3 class="post-title"><time class="index-time" itemprop="datePublished">
+                                    {{ dateFormat "January 02,2006" .Date }}
+                                </time><br>
+                                {{.Title}}
+                            </h3>
+                            <div class="post-meta">
+                                {{- if .Keywords }}
+                                {{ range .Keywords }}
+                                #{{- . -}}
+                                {{ end }}
+                                {{- end }}
+                            </div>
+                        </a>
+                    </li>
+                    {{ end }}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="nav-page">
+            <!-- 分页导航 -->
+            {{ partial "pagination.html" . }}
+        </div>
+    </div>
+</div>
+{{ partial "footer.html" . }}
