@@ -15,6 +15,15 @@
 <script src="/js/prism.js"></script>
 <script src="/js/zoom-vanilla.min.js"></script>
 <script>
+    var str = "{{.Site.Params.logo}}".split('').reverse().join('');
+    for (i = 0; i < str.length; i++) {
+        if (str.charAt(i) == '|') {
+            $('<a href="{{ .Site.BaseURL }}"><span class="w">' + str.charAt(i) + '</span></a>').prependTo($(".header-logo"));
+        } else {
+            $('<span class="b">' + str.charAt(i) + '</span>').prependTo($(".header-logo"));
+        }
+
+    }
     "{{- if .Site.Params.isIconNav -}}"
     var b = document.getElementsByClassName('b');
     var w = document.getElementsByClassName('w');
@@ -63,20 +72,20 @@
         }
     }
 
-    function isMenu2(c = 'none') {
-        if (document.getElementById('torTree')) {
-            if ($("#torTree").attr('style') == 'display: none;') {
-                $("#torTree").fadeIn(300);
-                $("#torTree").css('display', 'inline-block');
-            } else {
-                $("#torTree").fadeOut(300);
-            }
-        } else {
-            if (c != 'auto') {
-                alert('人家是导航树哦！只有在特定的文章页面才会出现的。');
-            }
-        }
-    }
+    // function isMenu2(c = 'none') {
+    //     if (document.getElementById('torTree')) {
+    //         if ($("#torTree").attr('style') == 'display: none;') {
+    //             $("#torTree").fadeIn(300);
+    //             $("#torTree").css('display', 'inline-block');
+    //         } else {
+    //             $("#torTree").fadeOut(300);
+    //         }
+    //     } else {
+    //         if (c != 'auto') {
+    //             alert('人家是导航树哦！只有在特定的文章页面才会出现的。');
+    //         }
+    //     }
+    // }
 
     function isMenu3() {
         if (document.getElementById('search-box').style.display == 'block') {
@@ -130,9 +139,9 @@
         window.location.hash = "#postFun";
     }
 
-    "{{- if .Site.Params.isTorTree -}}"
-    isMenu2('auto');
-    "{{- end -}}"
+    // "{{- if .Site.Params.isTorTree -}}"
+    // isMenu2('auto');
+    // "{{- end -}}"
 
     var $navs = $('.torList'),
         $sections = $('.torAn'),
