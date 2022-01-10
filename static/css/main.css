@@ -291,6 +291,12 @@ blockquote ul, blockquote ol {
     color: #fff;
 }
 
+.header-logo span.bars {
+    background: #414141;
+    color: #fff;
+    padding: 4px;
+}
+
 .header-logo span.b:hover {
     background: #555;
 }
@@ -299,6 +305,7 @@ blockquote ul, blockquote ol {
     display: none;
     background: #414141;
     color: #fff;
+    padding: 4px;
 }
 
 .header-logo span.bf:hover {
