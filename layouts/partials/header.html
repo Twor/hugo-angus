@@ -16,25 +16,31 @@
                         <span class="b">E</span> -->
                         <!-- 标题结束 -->
                         <a id="btn-menu" href="javascript:isMenu()">
-                            <span class="b">·</span>
+
+                            {{ if .Site.Params.isIconNav}}
+                            <span class="bars"><i class="fas fa-chevron-right"></i></i></span>
+                            {{ else }}
+                            <span class="bars">.</i></i></span>
+                            {{ end }}
                         </a>
                         <a href="javascript:isMenu1();">
                             {{ if .Site.Params.isIconNav}}
-                            <span id="menu-1" class="bf"><i class="twa twa-flags"></i></span>
+                            <span id="menu-1" class="bf"><i class="fas fa-bars"></i></span>
                             {{ else }}
                             <span id="menu-1" class="bf">1</span>
                             {{ end }}
                         </a>
-                        <!-- <a href="javascript:isMenu2();">
+                        <a href="/index.xml">
                             {{ if .Site.Params.isIconNav}}
-                            <span id="menu-2" class="bf"><i class="twa twa-evergreen-tree"></i></span>
+                            <span id="menu-2" class="bf"><i class="fas fa-rss"></i></span>
                             {{ else }}
                             <span id="menu-2" class="bf">2</span>
                             {{ end }}
-                        </a> -->
+                        </a>
+
                         <a href="javascript:isMenu3();">
                             {{ if .Site.Params.isIconNav}}
-                            <span id="menu-3" class="bf"><i class="twa twa-mag"></i></span>
+                            <span id="menu-3" class="bf"><i class="fas fa-search"></i></span>
                             {{ else }}
                             <span id="menu-3" class="bf">3</span>
                             {{ end }}
