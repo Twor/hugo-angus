@@ -1,0 +1,25 @@
+{{ partial "header.html" . }}
+
+<div id="body" class="clearfix">
+    <div class="container-fluid">
+        <div class="row">
+            <div id="main" role="main">
+                <ul class="post-list clearfix">
+                    {{ $paginator := .Paginate (where .Site.RegularPages "Section" "post" ) }}
+                    <h1 class="post__title">{{ .Title }}</h1>
+                    {{- with .Params.lead }}
+                    <p class="post__lead">{{ . }}</p>
+                    {{- end }}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="nav-page">
+            <!-- 分页导航 -->
+        </div>
+    </div>
+</div>
+{{ partial "footer.html" . }}

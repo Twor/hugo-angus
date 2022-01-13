@@ -11,7 +11,8 @@
                         <a class="post-link" href="{{.Permalink}}">
                             {{ if .Site.Params.backgroundURL}}
                             <span class="cover"
-                                style="background: url('{{.Site.Params.backgroundURL}}') center/cover no-repeat;"></span>
+                                style="background: url('{{.Site.Params.backgroundURL}}') center/cover no-repeat;">
+                            </span>
                             {{ end }}
                             <h3 class="post-title"><time class="index-time" itemprop="datePublished">
                                     {{ dateFormat "January 02,2006" .Date }}

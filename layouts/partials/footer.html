@@ -14,6 +14,8 @@
 <script src="/js/jquery.min.js"></script>
 <script src="/js/prism.js"></script>
 <script src="/js/zoom-vanilla.min.js"></script>
+<script src="/js/fuse.js"></script> <!-- download and copy over fuse.min.js file from fusejs.io -->
+<script src="/js/search.js"></script>
 <script>
     var str = "{{.Site.Params.logo}}".split('').reverse().join('');
     for (i = 0; i < str.length; i++) {
@@ -38,16 +40,15 @@
     }
     "{{- end -}}"
 
+
+
+
+
     $(document).ready(function () {
-        if (window.location.hash != '') {
-            var i = window.location.hash.indexOf('#comment');
-            var ii = window.location.hash.indexOf('#respond-post');
-            if (i != -1 || ii != -1) {
-                document.getElementById('btn-comments').innerText = 'hide comments';
-                document.getElementById('comments').style.display = 'block';
-                footerPosition();
-            }
-        }
+        $("#menu-search").keydown(function (e) {
+            if (e.keyCode == 13)
+                loadSearch($("#menu-search").val())
+        });
     });
 
     function isMenu() {
@@ -95,17 +96,6 @@
         }
     }
 
-    function isComments() {
-        if (document.getElementById('btn-comments').innerText == 'show comments') {
-            document.getElementById('btn-comments').innerText = 'hide comments';
-            document.getElementById('comments').style.display = 'block';
-        } else {
-            document.getElementById('btn-comments').innerText = 'show comments';
-            document.getElementById('comments').style.display = 'none';
-        }
-        footerPosition();
-    }
-
     function Search404() {
         $('#menu-1').fadeIn(150);
         $('#menu-2').fadeIn(150);
@@ -113,55 +103,41 @@
         $('#search-box').fadeIn(300);
     }
 
-    function goBack() {
-        window.history.back();
-    }
 
-    function footerPosition() {
-        $("footer").removeClass("fixed-bottom");
-        var contentHeight = document.body.scrollHeight,
-            winHeight = window.innerHeight;
-        if (document.getElementsByClassName("post-content")[0]) {
-            var winImgNum = document.getElementsByClassName("post-content")[0].getElementsByTagName("img").length;
-        } else {
-            var winImgNum = 0;
-        }
-        if (!(contentHeight > winHeight) && winImgNum == 0) {
-            $("footer").addClass("fixed-bottom");
-        }
-    }
-    footerPosition();
-    $(window).resize(footerPosition);
-
-    function goToComment() {
-        document.getElementById('btn-comments').innerText = 'hide comments';
-        document.getElementById('comments').style.display = 'block';
-        window.location.hash = "#postFun";
-    }
 
     // "{{- if .Site.Params.isTorTree -}}"
     // isMenu2('auto');
     // "{{- end -}}"
 
-    var $navs = $('.torList'),
-        $sections = $('.torAn'),
-        $window = $(window),
-        navLength = $navs.length - 1;
-
-    $window.on('scroll', function () {
-        var scrollTop = $window.scrollTop(),
-            len = navLength;
-
-        for (; len > -1; len--) {
-            var that = $sections.eq(len);
-            if (scrollTop >= (that.offset().top - 100)) {
-                $navs.removeClass('on').eq(len).addClass('on');
-                break;
-            }
-            $navs.removeClass('on');
-        }
-    });
 </script>
+<script>
+
+    // loadSearch('test')
+
+    // executeSearch('test1')
+
+    // // 数据
+    // const data = [
+    //     {
+    //         "title": "hello world",
+    //     },
+    //     {
+    //         "title": "你好，世界",
+    //     }
+    // ];
+
+
+    // // 弄一个实例
+    // const fuse = new Fuse(data, {
+    //     // 自定义需要搜索的字段
+    //     keys: ["title"]
+    // });
+
+    // // 执行搜索
+    // const result = fuse.search('world');
+    // console.log(result);
+</script>
+
 </body>
 
 </html>
