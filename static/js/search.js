@@ -1,8 +1,17 @@
 var fuse; // holds our search engine
-var fuseIndex;
-var searchQuery;
+var searchitems;
+
+// ==========================================
+// execute search as each character is typed
+//
+// document.getElementById("menu-search").onkeyup = function (e) {
+//     executeSearch(this.value);
+// }
 
 
+// ==========================================
+// fetch some json without jquery
+//
 function fetchJSONFile(path, callback) {
     var httpRequest = new XMLHttpRequest();
     httpRequest.onreadystatechange = function () {
@@ -13,13 +22,25 @@ function fetchJSONFile(path, callback) {
             }
         }
     };
-    httpRequest.open('GET', path);
+    httpRequest.open('GET', path, false);
     httpRequest.send();
 }
 
-function loadSearch(term) {
-    fetchJSONFile('/index.json', function (data) {
 
+function tags(tags) {
+    var tag = '';
+    for (let index = 0; index < tags.length; index++) {
+        tag = tag + ' #' + tags[index];
+    }
+    return tag
+}
+
+// ==========================================
+// load our search index, only executed once
+// on first call of search box (CMD-/)
+//
+function executeSearch(term) {
+    fetchJSONFile('/index.json', function (data) {
         var options = { // fuse.js options; check fuse.js website for details
             shouldSort: true,
             location: 0,
@@ -27,40 +48,23 @@ function loadSearch(term) {
             threshold: 0.4,
             minMatchCharLength: 2,
             keys: [
-                'permalink',
                 'title',
                 'tags',
-                'contents'
+                'permalink',
+                'summary'
             ]
         };
-        // Create the Fuse index
-        fuseIndex = Fuse.createIndex(options.keys, data)
-        fuse = new Fuse(data, options, fuseIndex); // build the index from the json file
+        fuse = new Fuse(data, options); // build the index from the json file
         let results = fuse.search(term); // the actual query being run using fuse.js
-        let searchitems = ''; // our results bucket
+        searchitems = ''; // our results bucket
 
-        if (results.length === 0) { // no results based on what was typed into the input box
-            resultsAvailable = false;
-            searchitems = '';
+        if (results.length == 0) { // no results based on what was typed into the input box
+            searchitems = 0;
         } else { // build our html
-            // console.log(results)
-            permalinks = [];
-            numLimit = 5;
-            for (let item in results) { // only show first 5 results
-                if (item > numLimit) {
-                    break;
-                }
-                if (permalinks.includes(results[item].item.permalink)) {
-                    continue;
-                }
-                //   console.log('item: %d, title: %s', item, results[item].item.title)
-                searchitems = searchitems + '<li><a href="' + results[item].item.permalink + '" tabindex="0">' + '<span class="title">' + results[item].item.title + '</span></a></li>';
-                permalinks.push(results[item].item.permalink);
+            for (let item in results.slice(0, 8)) { // only show first 5 results
+                searchitems = searchitems + '<li class="post-item grid-item" itemscope itemtype="http://schema.org/BlogPosting"><a class="post-link" href="' + results[item].item.permalink + '"><h3 class="post-title"><time class="index-time" itemprop="datePublished">' + results[item].item.date + '</time><br>' + results[item].item.title + '</h3><div class="post-meta">' + tags(results[item].item.tags) + '</div></a></li>';
             }
-            resultsAvailable = true;
-            console.log(searchitems);
-            document.getElementsByClassName("post-list").innerHTML = searchitems;
         }
-
     });
+    return searchitems
 }

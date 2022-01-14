@@ -21,7 +21,7 @@
                             </h3>
                             <div class="post-meta">
                                 {{- if .Params.tags }}
-                                {{ delimit .Params.tags " " }}
+                                #{{ delimit .Params.tags " #" }}
                                 {{else}}
                                 未分类
                                 {{- end }}

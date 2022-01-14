@@ -14,7 +14,7 @@
 <script src="/js/jquery.min.js"></script>
 <script src="/js/prism.js"></script>
 <script src="/js/zoom-vanilla.min.js"></script>
-<script src="/js/fuse.js"></script> <!-- download and copy over fuse.min.js file from fusejs.io -->
+<script src="/js/fuse.js"></script> <!-- download and copy over fuse.js file from fusejs.io -->
 <script src="/js/search.js"></script>
 <script>
     var str = "{{.Site.Params.logo}}".split('').reverse().join('');
@@ -40,14 +40,21 @@
     }
     "{{- end -}}"
 
-
-
-
-
     $(document).ready(function () {
+        var liString = "";
         $("#menu-search").keydown(function (e) {
-            if (e.keyCode == 13)
-                loadSearch($("#menu-search").val())
+            if (e.keyCode == 13) {
+                let searchitems = executeSearch($("#menu-search").val());
+                // console.log();
+                if (searchitems == 0) {
+                    alert("没找到相关内容")
+                } else {
+                    $('.post-list').empty();
+                    $('.post-list').append(searchitems);
+                    $('.pagination').hide();
+                }
+
+            }
         });
     });
 
