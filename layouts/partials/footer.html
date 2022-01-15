@@ -1,4 +1,4 @@
-<footer id="footer" role="contentinfo">
+<footer id="footer" role="contentinfo" class="fixed-bottom">
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
@@ -41,19 +41,11 @@
     "{{- end -}}"
 
     $(document).ready(function () {
-        var liString = "";
         $("#menu-search").keydown(function (e) {
             if (e.keyCode == 13) {
-                let searchitems = executeSearch($("#menu-search").val());
-                // console.log();
-                if (searchitems == 0) {
-                    alert("没找到相关内容")
-                } else {
-                    $('.post-list').empty();
-                    $('.post-list').append(searchitems);
-                    $('.pagination').hide();
-                }
-
+                var searchString = $("#menu-search").val();
+                var url = "{{ .Site.BaseURL }}" + "search?s=" + searchString;
+                window.location.href = url;
             }
         });
     });

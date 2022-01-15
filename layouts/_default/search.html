@@ -1,15 +1,15 @@
 {{ partial "header.html" . }}
-
+<div class="container-fluid">
+    <div class="row">
+        <div class="archive-header">
+        </div>
+    </div>
+</div>
 <div id="body" class="clearfix">
     <div class="container-fluid">
         <div class="row">
             <div id="main" role="main">
                 <ul class="post-list clearfix">
-                    {{ $paginator := .Paginate (where .Site.RegularPages "Section" "post" ) }}
-                    <h1 class="post__title">{{ .Title }}</h1>
-                    {{- with .Params.lead }}
-                    <p class="post__lead">{{ . }}</p>
-                    {{- end }}
                 </ul>
             </div>
         </div>
@@ -23,3 +23,17 @@
     </div>
 </div>
 {{ partial "footer.html" . }}
+
+<script>
+    var s = getQueryVariable("s");
+    var searchitems = executeSearch(s);
+    // console.log(searchString);
+    if (searchitems == 0) {
+        var html = '<br><br><h2 class="post-title"><center>(´°̥̥̥̥̥̥̥̥ω°̥̥̥̥̥̥̥̥｀) 什么都没有找到唉...</center></h2>';
+        $(".archive-header").html("<span>- Search ·" + s + "</span>");
+        $('.post-list').append(html);
+    } else {
+        $('.post-list').empty();
+        $('.post-list').append(searchitems);
+    }
+</script>
