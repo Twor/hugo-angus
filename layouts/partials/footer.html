@@ -1,4 +1,4 @@
-<footer id="footer" role="contentinfo" class="fixed-bottom">
+<footer id="footer" role="contentinfo">
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
@@ -108,6 +108,21 @@
     // isMenu2('auto');
     // "{{- end -}}"
 
+    function footerPosition() {
+        $("footer").removeClass("fixed-bottom");
+        var contentHeight = document.body.scrollHeight,
+            winHeight = window.innerHeight;
+        if (document.getElementsByClassName("post-content")[0]) {
+            var winImgNum = document.getElementsByClassName("post-content")[0].getElementsByTagName("img").length;
+        } else {
+            var winImgNum = 0;
+        }
+        if (!(contentHeight > winHeight) && winImgNum == 0) {
+            $("footer").addClass("fixed-bottom");
+        }
+    }
+    footerPosition();
+    $(window).resize(footerPosition);
 </script>
 <script>
 

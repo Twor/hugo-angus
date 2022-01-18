@@ -11,7 +11,7 @@
 
 <!-- 如果有超过一页的内容 (即需要导航栏) -->
 {{ if gt $paginator.TotalPages 1 }}
-<ul class="pagination">
+<ol class="pagination">
     <!-- 上一页 -->
     {{ if $paginator.HasPrev }}
     <li class="pag-item pag-previous">
@@ -61,5 +61,5 @@
         <a href="{{ $paginator.Next.URL }}" class="pag-link">»</a>
     </li>
     {{ end }}
-</ul>
+</ol>
 {{ end }}
