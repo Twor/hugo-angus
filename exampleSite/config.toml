@@ -1,0 +1,33 @@
+baseURL = 'http://example.org/'
+languageCode = 'en-us'
+title = 'Twor'
+theme = "hugo-angus"
+paginate = 8
+
+[params]
+  backgroundURL = ""
+  logo = "TW|OR"
+  isIconNav = true
+
+[params.utteranc]
+  enable = true
+  repo = "Twor/blog-comment"
+  issueTerm = "pathname"
+  theme = "github-light"
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+# 主导航菜单
+[menu]
+  [[menu.main]]
+    identifier = "post"
+    name="博文"
+    url="/"
+    weight="1"
+  [[menu.main]]
+    identifier = "about"
+    name="关于"
+    url="/about"
+    weight="2"
+
