@@ -511,10 +511,10 @@ blockquote ul, blockquote ol {
     margin: 0 2px;
 }
 
-.nav-page a:hover {
+/* .nav-page a:hover {
     color: #414141;
     background-color: #f5f5f5;
-}
+} */
 
 .nav-page ol {
     list-style: none;
@@ -523,6 +523,13 @@ blockquote ul, blockquote ol {
 .nav-page ol li {
     text-align: center;
     float: left;
+}
+
+.nav-page .pag-current{
+    background-color: #414141;
+}
+.nav-page .pag-current a{
+    color:#f5f5f5;
 }
 
 .nav-page ol .current a {

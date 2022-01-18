@@ -1,4 +1,4 @@
-<footer id="footer" role="contentinfo" class="fixed-bottom">
+<footer id="footer" role="contentinfo">
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
@@ -29,8 +29,8 @@
     "{{- if .Site.Params.isIconNav -}}"
     var b = document.getElementsByClassName('b');
     var w = document.getElementsByClassName('w');
-    var menupgMargin = (b.length + w.length) * 28;
-    var srhboxMargin = (b.length + w.length + 3) * 28;
+    var menupgMargin = (b.length + w.length + 1) * 28;
+    var srhboxMargin = (b.length + w.length + 4) * 28;
     var menusrhWidth = (b.length + w.length - 1) * 28;
     document.getElementById('menu-page').style['margin-left'] = menupgMargin + 'px';
     document.getElementById('search-box').style['margin-left'] = srhboxMargin + 'px';
@@ -66,9 +66,9 @@
 
     function isMenu1() {
         if (document.getElementById('menu-page').style.display == 'block') {
-            $('#menu-page').fadeOut(300);
+            $('#menu-page').fadeOut(400);
         } else {
-            $('#menu-page').fadeIn(300);
+            $('#menu-page').fadeIn(400);
         }
     }
 
@@ -89,9 +89,9 @@
 
     function isMenu3() {
         if (document.getElementById('search-box').style.display == 'block') {
-            $('#search-box').fadeOut(300);
+            $('#search-box').fadeOut(400);
         } else {
-            $('#search-box').fadeIn(300);
+            $('#search-box').fadeIn(400);
         }
     }
 
@@ -108,6 +108,21 @@
     // isMenu2('auto');
     // "{{- end -}}"
 
+    function footerPosition() {
+        $("footer").removeClass("fixed-bottom");
+        var contentHeight = document.body.scrollHeight,
+            winHeight = window.innerHeight;
+        if (document.getElementsByClassName("post-content")[0]) {
+            var winImgNum = document.getElementsByClassName("post-content")[0].getElementsByTagName("img").length;
+        } else {
+            var winImgNum = 0;
+        }
+        if (!(contentHeight > winHeight) && winImgNum == 0) {
+            $("footer").addClass("fixed-bottom");
+        }
+    }
+    footerPosition();
+    $(window).resize(footerPosition);
 </script>
 <script>
 

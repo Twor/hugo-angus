@@ -11,5 +11,9 @@
         </div>
     </div>
 </div>
+{{ if .Params.type }}
+{{ else }}
 {{- partial "post_nav.html" . -}}
+{{ end }}
+{{- partial "comments.html" . -}}
 {{- partial "footer.html" . -}}
