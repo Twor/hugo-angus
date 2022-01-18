@@ -70,8 +70,9 @@ function executeSearch(term) {
             if (results.length == 0) { // no results based on what was typed into the input box
                 searchitems = 0;
             } else { // build our html
-                for (let item in results.slice(0, 8)) { // only show first 5 results
-                    searchitems = searchitems + '<li class="post-item grid-item" itemscope itemtype="http://schema.org/BlogPosting"><a class="post-link" href="' + results[item].item.permalink + '"><h3 class="post-title"><time class="index-time" itemprop="datePublished">' + results[item].item.date + '</time><br>' + results[item].item.title + '</h3><div class="post-meta">' + tags(results[item].item.tags) + '</div></a></li>';
+                for (let item in results.slice(0, 8)) { // only show first 8 results
+                    var timeDate = new Date(results[item].item.date);
+                    searchitems = searchitems + '<li class="post-item grid-item" itemscope itemtype="http://schema.org/BlogPosting"><a class="post-link" href="' + results[item].item.permalink + '"><h3 class="post-title"><time class="index-time" itemprop="datePublished">' + timeDate.toDateString() + '</time><br>' + results[item].item.title + '</h3><div class="post-meta">' + tags(results[item].item.tags) + '</div></a></li>';
                 }
             }
         });
