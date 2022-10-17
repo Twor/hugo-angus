@@ -1,8 +1,9 @@
 ---
-title: "Test2"
+title: "linux"
 date: 2022-01-10T16:57:14+08:00
 draft: true
-tags: [hugo,cat]
+sort: [测试]
+tags: [hugo,test]
 ---
 
 # 标题一
@@ -37,4 +38,9 @@ func main() {
 ![7VS4Fe.jpg](https://s4.ax1x.com/2022/01/10/7VS4Fe.jpg)
 
 ### 视频
-开发中。。。
+
+
+{{< bilibili BV1sz4y197L8 10 >}}
+
+
+{{< youtube id="w7Ft2ymGmfc" autoplay="true" >}}

@@ -5,7 +5,7 @@
         <div class="row">
             <div id="main" role="main">
                 <ul class="post-list clearfix">
-                    {{ $paginator := .Paginate (where .Site.RegularPages "Section" "post" ) }}
+                    {{ $paginator := .Paginate (where .Site.RegularPages "Section" "posts" ) }}
                     {{ range $paginator.Pages }}
                     <li class="post-item grid-item" itemscope itemtype="http://schema.org/BlogPosting">
                         <a class="post-link" href="{{.Permalink}}">
@@ -20,8 +20,8 @@
                                 {{.Title}}
                             </h3>
                             <div class="post-meta">
-                                {{- if .Params.tags }}
-                                #{{ delimit .Params.tags " #" }}
+                                {{- if .Params.sort }}
+                                #{{ delimit .Params.sort " #" }}
                                 {{else}}
                                 未分类
                                 {{- end }}

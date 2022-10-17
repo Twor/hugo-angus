@@ -21,7 +21,7 @@ paginate = 8
 # 主导航菜单
 [menu]
   [[menu.main]]
-    identifier = "post"
+    identifier = "posts"
     name="博文"
     url="/"
     weight="1"
