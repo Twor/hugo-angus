@@ -4,7 +4,7 @@ licenselink = "https://github.com/Twor/hugo-angus/blob/master/LICENSE"
 description = "A beautiful hugo theme"
 homepage = "https://github.com/Twor/hugo-angus"
 demosite = "https://twor.me"
-tags = ["blog", "simple", "dark", highlighting"]
+tags = ["blog", "simple", "dark", "highlighting"]
 features = ["blog", "technical", "simple", "dark", "highlighting"]
 min_version = "0.41.0"
 

@@ -17,14 +17,14 @@
                     </a>
                 </li>
                 <li class="post-item grid-item">
-                    <a class="post-link" href="#">
+                    <a class="post-link" href="{{ .Site.BaseURL }}">
                         <h3 class="post-title">返回首页</h3>
                         <div class="post-meta">(・(ｪ)・)</div>
                     </a>
                 </li>
                 <li class="post-item grid-item">
                     <a class="post-link">
-                        <h3 class="post-title">没了哦</h3>
+                        <h3 class="post-title">别点我！</h3>
                         <div class="post-meta">(○’ω’○)</div>
                     </a>
                 </li>
@@ -32,3 +32,5 @@
         </div>
     </div>
 </div>
+
+{{ partial "footer.html" . }}
